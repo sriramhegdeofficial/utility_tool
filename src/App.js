@@ -7,16 +7,21 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            percent: 50
+            percent: 50,
+            
             
         };
     }
     handleChange = (event) => {
-       let  percentValue = parseInt(event.target.value);
+     
 
-        if(percentValue >= 0 || percentValue <= 100){
+        if(event.target.value >= 0 || event.target.value <= 100){
             this.setState({
-                percent: percentValue
+                percent: event.target.value
+            })
+        }else {
+            this.setState({
+                percent: 0
             })
         }
         
@@ -28,7 +33,10 @@ export default class App extends Component {
                 
             <CircleProgress percentage={this.state.percent} strokeWidth={15} primaryColor= {["red", "green","green","yellow"]}  secondaryColor="#f0f0f0" />
             <input 
-            
+            type = "number"
+            min = "0"
+            max = "100"
+            value = {this.state.percent}
             onChange = {this.handleChange}
             />
             </div>
